@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawhill Wines Fiji - Wine Recommendations</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #1e1e1e; /* Darker container */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ff6f61; /* Coral accent color */
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #bdbdbd;
+        }
+        select, input[type="submit"] {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-top: 5px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1px solid #424242;
+            background-color: #333;
+            color: #e0e0e0;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #e9573f;
+        }
+        .result {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .result strong {
+            color: #ff6f61;
+        }
+        .grape-info {
+          margin-top: 20px;
+        }
+
+        .grape-info h3{
+          color: #ff6f61;
+          margin-bottom: 10px;
+        }
+
+        .grape-info p{
+          line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Lawhill Wines Fiji</h1>
+        <p>Not sure what to buy? Don't worry, we're here to help! Please select your preferences below, and we'll recommend the perfect wine for you.</p>
+        <form id="wineForm">
+            <div class="section">
+                <label for="wineType">Wine Type:</label>
+                <select id="wineType" name="wineType" required>
+                    <option value="">--Select--</option>
+                    <option value="red">Red</option>
+                    <option value="white">White</option>
+                    <option value="rosé">Rosé</option>
+                    <option value="sparkling">Sparkling</option>
+                    <option value="dessert">Dessert Wine</option>
+                    <option value="fortified">Fortified Wine</option>
+                    <option value="orange">Orange Wine</option>
+                    <option value="natural">Natural Wine</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="sweetness">Sweetness Level:</label>
+                <select id="sweetness" name="sweetness" required>
+                    <option value="">--Select--</option>
+                    <option value="dry">Dry</option>
+                    <option value="off-dry">Off-Dry</option>
+                    <option value="medium-sweet">Medium Sweet</option>
+                    <option value="sweet">Sweet</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="foodPairing">Food Pairing:</label>
+                <select id="foodPairing" name="foodPairing" required>
+                    <option value="">--Select--</option>
+                    <option value="vegetables">Vegetables</option>
+                    <option value="whiteMeat">White Meat (e.g., chicken, pork)</option>
+                    <option value="redMeat">Red Meat (e.g., beef, lamb)</option>
+                    <option value="fish">Fish</option>
+                    <option value="seafood">Seafood</option>
+                    <option value="cheese">Cheese</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="spicyFood">Spicy Food</option>
+                    <option value="curedMeats">Cured Meats</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="appetizers">Appetizers & Snacks (Optional):</label>
+                <select id="appetizers" name="appetizers">
+                    <option value="">--Select (Optional)--</option>
+                    <option value="cheesePlatter">Cheese Platter</option>
+                    <option value="charcuterie">Charcuterie</option>
+                    <option value="nuts">Nuts</option>
+                    <option value="olives">Olives</option>
+                    <option value="vegetableDips">Vegetable Dips</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="bodyStyle">Body Style (Optional):</label>
+                <select id="bodyStyle" name="bodyStyle">
+                    <option value="">--Select (Optional)--</option>
+                    <option value="light-bodied">Light-Bodied</option>
+                    <option value="medium-bodied">Medium-Bodied</option>
+                    <option value="full-bodied">Full-Bodied</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="acidityLevel">Acidity Level (Optional):</label>
+                <select id="acidityLevel" name="acidityLevel">
+                    <option value="">--Select (Optional)--</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="section">
+                <label for="flavorProfile">Flavor Profile (Optional):</label>
+                <select id="flavorProfile" name="flavorProfile">
+                    <option value="">--Select (Optional)--</option>
+                    <option value="fruity">Fruity</option>
+                    <option value="oaky">Oaky</option>
+                    <option value="earthy">Earthy</option>
+                    <option value="spicy">Spicy</option>
+                    <option value="floral">Floral</option>
+                    <option value="herbaceous">Herbaceous</option>
+                    <option value="rich">Rich</option>
+                    <option value="crisp">Crisp</option>
+                </select>
+            </div>
+            <input type="submit" value="Get Recommendation">
+        </form>
+        <div id="result" class="result"></div>
+        <div id="grapeInfo" class="grape-info"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM is fully loaded and parsed.");
+
+            const wineTypeSelect = document.getElementById('wineType');
+            const sweetnessSelect = document.getElementById('sweetness');
+            const foodPairingSelect = document.getElementById('foodPairing');
+            const appetizersSelect = document.getElementById('appetizers');
+            const bodyStyleSelect = document.getElementById('bodyStyle');
+            const acidityLevelSelect = document.getElementById('acidityLevel');
+            const flavorProfileSelect = document.getElementById('flavorProfile');
+
+            function updateOptions() {
+                // Reset all options to be visible
+                resetOptions();
+
+                // Hide options based on selections
+                if (wineTypeSelect.value) {
+                    // Example: If 'red' is selected, hide certain sweetness options
+                    if (wineTypeSelect.value === 'red') {
+                        hideOptions(sweetnessSelect, ['medium-sweet', 'sweet']);
+                    } else if (wineTypeSelect.value === 'white') {
+                        hideOptions(sweetnessSelect, ['dry']);
+                    }
+                    // Add more conditions as needed for other wine types
+                }
+            }
+
+            function resetOptions() {
+                // Show all options for all selects
+                for (let select of [sweetnessSelect, foodPairingSelect, appetizersSelect, bodyStyleSelect, acidityLevelSelect, flavorProfileSelect]) {
+                    for (let option of select.options) {
+                        option.style.display = '';
+                    }
+                }
+            }
+
+            function hideOptions(selectElement, valuesToHide) {
+                for (let i = 0; i < selectElement.options.length; i++) {
+                    if (valuesToHide.includes(selectElement.options[i].value)) {
+                        selectElement.options[i].style.display = 'none';
+                    }
+                }
+            }
+
+            // Event listeners for dropdowns
+            wineTypeSelect.addEventListener('change', updateOptions);
+            sweetnessSelect.addEventListener('change', updateOptions);
+            foodPairingSelect.addEventListener('change', updateOptions);
+            appetizersSelect.addEventListener('change', updateOptions);
+            bodyStyleSelect.addEventListener('change', updateOptions);
+            acidityLevelSelect.addEventListener('change', updateOptions);
+            flavorProfileSelect.addEventListener('change', updateOptions);
+
+            document.getElementById('wineForm').addEventListener('submit', function(event) {
+                console.log("Submit event listener is running!");
+                event.preventDefault();
+                console.log("preventDefault() called.");
+                
+                const wineType = wineTypeSelect.value;
+                const sweetness = sweetnessSelect.value;
+                const foodPairing = foodPairingSelect.value;
+                const appetizers = appetizersSelect.value;
+                const bodyStyle = bodyStyleSelect.value;
+                const acidityLevel = acidityLevelSelect.value;
+                const flavorProfile = flavorProfileSelect.value;
+
+                console.log("Values retrieved:", { wineType, sweetness, foodPairing, appetizers, bodyStyle, acidityLevel, flavorProfile });
+
+                // Expanded wine recommendations based on the new criteria
+                const wineRecommendations = {
+                    red: ['Cabernet Sauvignon', 'Merlot', 'Pinot Noir', 'Syrah', 'Zinfandel', 'Malbec', 'Sangiovese', 'Grenache', 'Tempranillo', 'Nebbiolo', 'Gamay', 'Barbera', 'Cabernet Franc', 'Mourvèdre', 'Petit Verdot', 'Tannat', 'Aglianico', 'Dolcetto', 'Carignan', 'Cinsault'],
+                    white: ['Chardonnay', 'Sauvignon Blanc', 'Riesling', 'Pinot Grigio', 'Chenin Blanc', 'Gewürztraminer', 'Viognier', 'Albariño', 'Muscat', 'Semillon', 'Verdejo', 'Trebbiano', 'Fiano', 'Torrontés', 'Roussanne', 'Marsanne', 'Petit Manseng'],
+                    rosé: ['Grenache Rosé', 'Syrah Rosé', 'Mourvèdre Rosé', 'Pinot Noir Rosé', 'Tempranillo Rosé', 'Sangiovese Rosato'],
+                    sparkling: ['Champagne', 'Prosecco', 'Cava', 'Sekt', 'Franciacorta'],
+                    dessert: ['Moscato', 'Sauternes', 'Tokaji', 'Ice Wine', 'Late Harvest Riesling'],
+                    fortified: ['Port', 'Sherry', 'Madeira', 'Marsala'],
+                    orange: ['Skin-Contact Sauvignon Blanc', 'Skin-Contact Pinot Grigio'],
+                    natural: ['Natural Red Blend', 'Natural White Blend'],
+                };
+
+                let recommendations = wineRecommendations[wineType] || [];
+                let filteredRecommendations = [...recommendations];
+
+                // Example filtering logic based on flavor profile
+                if (flavorProfile === 'fruity') {
+                    filteredRecommendations = filteredRecommendations.filter(grape => ['Merlot', 'Riesling', 'Zinfandel'].includes(grape));
+                } else if (flavorProfile === 'oaky') {
+                    filteredRecommendations = filteredRecommendations.filter(grape => ['Chardonnay', 'Cabernet Sauvignon'].includes(grape));
+                }
+                // Add more filtering logic as needed...
+
+                let recommendationText = '';
+                if (filteredRecommendations.length > 0) {
+                    recommendationText = filteredRecommendations.join(', ');
+                } else {
+                    recommendationText = 'No results based on your selections.';
+                }
+                console.log("Recommendation text:", recommendationText);
+
+                document.getElementById('result').innerHTML = `<strong>Recommended Wines:</strong> ${recommendationText}`;
+                document.getElementById('result').style.display = 'block';
+                console.log("Result div updated.");
+            });
+        });
+    </script>
+</body>
+</html>
